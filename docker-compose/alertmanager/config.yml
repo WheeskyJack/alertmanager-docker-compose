@@ -1,0 +1,45 @@
+global:
+  resolve_timeout: 15m
+route:
+  receiver: 'no-op-receiver' # no-op receiver
+  routes:
+  - receiver: 'no-op-receiver'
+    matchers:
+    - severity="minor" # redirect all alerts with minor severity to no-op receiver
+  - matchers:
+    - team="team1" # check if team label matches team1
+    continue: true # move on to next matchers irrespective of current receiver is matched or not
+    routes:
+    - matchers: # match sub conditions
+      - container="vector"
+      routes:
+      - receiver: webhook_vector
+    - matchers: # match sub conditions
+      - container="kafka"
+      routes:
+      - receiver: webhook_kafka
+    - receiver: webhook_team1 # default matcher for team1
+  - matchers:
+    - severity="critical"
+    continue: true
+    routes:
+    - receiver: webhook_critical_recv
+
+receivers:
+  - name: no-op-receiver
+  - name: webhook_team1
+    webhook_configs:
+    - send_resolved: true
+      url: http://receiver:8886
+  - name: webhook_vector
+    webhook_configs:
+    - send_resolved: true
+      url: http://receiver:8887
+  - name: webhook_kafka
+    webhook_configs:
+    - send_resolved: true
+      url: http://receiver:8888
+  - name: webhook_critical_recv
+    webhook_configs:
+    - send_resolved: true
+      url: http://receiver:8889
