@@ -2,11 +2,12 @@
 # alertmanager-docker-compose : alertmanager setup for local and exploration
 
 ## How-to
-1. execute `docker-compose up -d`
-2. execute `docker ps -a` to see if all containers are up
-3. execute `docker logs -f receiver` to see the results
-4. you can also open browser and go to `localhost:9093` to loging into alertmanager
-5. execute following to post variuos alerts to alertmanager from your terminal or postman.
+1. cd docker-compose
+2. execute `docker-compose up -d`
+3. execute `docker ps -a` to see if all containers are up
+4. execute `docker logs -f receiver` to see the results
+5. you can also open browser and go to `localhost:9093` to loging into alertmanager
+6. execute following to post variuos alerts to alertmanager from your terminal or postman.
 
 
 Note that, alert might appear with delay (upto 1 minute) on the logs terminal.
