@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  alertmanager:
+    image: quay.io/prometheus/alertmanager:v0.25.0
+    container_name: alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/config.yml/:/etc/alertmanager/config.yml
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--log.level=debug'
+  receiver:
+    build: .
+    container_name: receiver
+    ports:
+      - 8886:8886
+      - 8887:8887
+      - 8888:8888
+      - 8889:8889
