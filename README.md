@@ -1,5 +1,5 @@
 
-# alertmanager-docker-compose : alertmanager setup for local and exploration
+# alertmanager-docker-compose : alertmanager setup for local tests and exploration of features
 
 ## How-to
 1. cd docker-compose
