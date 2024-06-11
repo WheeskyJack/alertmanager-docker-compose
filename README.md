@@ -114,4 +114,4 @@ curl --location 'http://127.0.0.1:9093/api/v1/alerts' \
 ```
 
 
-to resolve alerts, execute same above coomands and set the endsAt to nearest current timestamp.
+to resolve alerts, execute same above commands after setting the endsAt to nearest current timestamp.
